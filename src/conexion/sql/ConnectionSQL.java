@@ -31,7 +31,7 @@ public class ConnectionSQL{
     protected PreparedStatement consulta;
     protected ResultSet datos;
     protected DatabaseMetaData metadata;
-    protected String urlConexion;
+    public String urlConexion;
     
     /*Nombre del driver a usar*/
     private static final String DRIVER_NAME = "oracle.jdbc.OracleDriver";

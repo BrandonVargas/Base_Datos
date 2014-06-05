@@ -8,6 +8,7 @@ package interfaz_base_datos;
 
 import javax.swing.JOptionPane;
 import conexion.sql.ConnectionSQL;
+import java.util.Arrays;
 
 /**
  *
@@ -108,11 +109,12 @@ public class Login extends javax.swing.JFrame {
         if(jTextField1.getText().length() >0 && jPasswordField1.getPassword().length >0){
             //getPassword regresa el texto sin encriptar
             //Creamos una nueva conexion
-            ConnectionSQL conn = new ConnectionSQL(jTextField1.getText(),
-                                                   jPasswordField1.getPassword().toString(),
+            ConnectionSQL conn = new ConnectionSQL("system",
+                                                   "system",
                                                    "localhost",
                                                    1521,"CURSOBD");
-            if(conn!=null){
+            
+            if(conn.getConnection()!=null){
                 JOptionPane.showMessageDialog(null,"Logueado Correctamente");
             }else{
                 JOptionPane.showMessageDialog(null,"Usuario y/o contraseña inválidos");
