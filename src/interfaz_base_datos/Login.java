@@ -114,7 +114,7 @@ public class Login extends javax.swing.JFrame {
 
             ConnectionSQL conn = new ConnectionSQL(jTextField1.getText(),
                                                    jPasswordField1.getText(),
-                                                   "localhost",
+                                                   "192.168.1.133",
                                                    1521,"CURSOBD");
 
             if(conn.getConnection()!=null){
