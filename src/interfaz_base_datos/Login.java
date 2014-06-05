@@ -6,9 +6,11 @@
 
 package interfaz_base_datos;
 
-import javax.swing.JOptionPane;
 import conexion.sql.ConnectionSQL;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -116,7 +118,9 @@ public class Login extends javax.swing.JFrame {
                                                    1521,"CURSOBD");
 
             if(conn.getConnection()!=null){
-                JOptionPane.showMessageDialog(null,"Logueado Correctamente");
+                this.dispose();
+                Usuario u = new Usuario();
+                u.mostrar(conn);
             }else{
                 JOptionPane.showMessageDialog(null,"Usuario y/o contraseña inválidos");
             }
@@ -136,7 +140,6 @@ public class Login extends javax.swing.JFrame {
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         Login l = new Login();
-        l.setDefaultCloseOperation(l.EXIT_ON_CLOSE);
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 

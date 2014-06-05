@@ -18,7 +18,7 @@ public class ConnectionSQL{
     /*
     * Variables para la configuración del la conexión.
     */
-    protected String user;
+    public String user;
     protected String password;
     protected String host;
     protected int port;
