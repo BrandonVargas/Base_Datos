@@ -109,18 +109,12 @@ public class Login extends javax.swing.JFrame {
         if(jTextField1.getText().length() >0 && jPasswordField1.getPassword().length >0){
             //getPassword regresa el texto sin encriptar
             //Creamos una nueva conexion
-<<<<<<< HEAD
+
             ConnectionSQL conn = new ConnectionSQL(jTextField1.getText(),
                                                    jPasswordField1.getText(),
                                                    "localhost",
                                                    1521,"CURSOBD");
-=======
-            ConnectionSQL conn = new ConnectionSQL("system",
-                                                   "system",
-                                                   "localhost",
-                                                   1521,"CURSOBD");
-            
->>>>>>> 31caf77cf14fbf47776d2cb319efd6f671f79ffc
+
             if(conn.getConnection()!=null){
                 JOptionPane.showMessageDialog(null,"Logueado Correctamente");
             }else{
