@@ -7,8 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
-
 /**
  * ConnectionSQL
  * Clase para conectar con la base de datos.
@@ -69,16 +67,17 @@ public class ConnectionSQL{
             Class.forName(DRIVER_NAME);
             //Obtenemos una conexión mediante la url
             c = DriverManager.getConnection(urlConexion);
-            //Si la conexion se realiza con éxito...
+            
+            //Si la conexion se realiza con éxito... (Unicamete para Testing)
             if(c!=null){
-            System.out.println("Conexion establecida con exito: "+c);
-            System.out.println("Datos de la conexion: ");
-            metadata = c.getMetaData();
-            System.out.println("URL: "+metadata.getURL());
-            System.out.println("Manejador: "+metadata.getDatabaseProductName());
-            System.out.println("Version: "+metadata.getDatabaseProductVersion());
-            System.out.println("Driver: "+metadata.getDriverName());
-            System.out.println("Version: "+metadata.getDriverVersion());
+                System.out.println("Conexion establecida con exito: "+c);
+                System.out.println("Datos de la conexion: ");
+                metadata = c.getMetaData();
+                System.out.println("URL: "+metadata.getURL());
+                System.out.println("Manejador: "+metadata.getDatabaseProductName());
+                System.out.println("Version: "+metadata.getDatabaseProductVersion());
+                System.out.println("Driver: "+metadata.getDriverName());
+                System.out.println("Version: "+metadata.getDriverVersion());
             }
     	}catch(ClassNotFoundException e){
             System.out.println("No se encontro el driver");

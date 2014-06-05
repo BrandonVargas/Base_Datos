@@ -7,6 +7,7 @@
 package interfaz_base_datos;
 
 import javax.swing.JOptionPane;
+import conexion.sql.ConnectionSQL;
 
 /**
  *
@@ -106,6 +107,16 @@ public class Login extends javax.swing.JFrame {
         //BOTON ACEPTAR
         if(jTextField1.getText().length() >0 && jPasswordField1.getPassword().length >0){
             //getPassword regresa el texto sin encriptar
+            //Creamos una nueva conexion
+            ConnectionSQL conn = new ConnectionSQL(jTextField1.getText(),
+                                                   jPasswordField1.getPassword().toString(),
+                                                   "localhost",
+                                                   1521,"CURSOBD");
+            if(conn!=null){
+                JOptionPane.showMessageDialog(null,"Logueado Correctamente");
+            }else{
+                JOptionPane.showMessageDialog(null,"Usuario y/o contraseña inválidos");
+            }
         }else{
             JOptionPane.showMessageDialog(null,"ERROR!\nDebes llenar todos los campos");
         }
