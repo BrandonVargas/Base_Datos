@@ -36,9 +36,10 @@ public class Usuario extends javax.swing.JFrame {
     public void mostrar(ConnectionSQL con){
         this.con=con;
         setTitle("Usuario: "+this.con.user);
-         Reloj reloj = new Reloj(this.getWidth()+600,this.getWidth()+10, 100, 50);
+         Reloj reloj = new Reloj(0,0,0,0);
         reloj.setFont(new java.awt.Font("Arial", 1, 18));
         getContentPane().add(reloj);
+        reloj.setVisible(true);
         setVisible(true);
         setExtendedState(6);
     }
@@ -53,14 +54,12 @@ public class Usuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
@@ -73,8 +72,6 @@ public class Usuario extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagene/perfil.jpg"))); // NOI18N
 
         jMenu1.setText("Archivo");
 
@@ -104,14 +101,6 @@ public class Usuario extends javax.swing.JFrame {
         jMenuItem3.setText("Cambiar contraseña");
         jMenu2.add(jMenuItem3);
 
-        jMenuItem4.setText("Cambiar foto");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem4);
-
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -123,16 +112,12 @@ public class Usuario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 840, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(1050, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 453, Short.MAX_VALUE)
+                .addContainerGap(664, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -142,32 +127,16 @@ public class Usuario extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // CERRAR SESIÓN
-        Login l = new Login();
-        l.setVisible(true);
         try {
-            this.con.endConnection();
+            con.endConnection();
+            this.dispose();
+            Login l = new Login();
+            l.setVisible(true);
         } catch (SQLException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+           JOptionPane.showMessageDialog(this, "Ocurrio un problema");
         }
-        this.dispose();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // CAMBIAR FOTO
-        //------------Falta implementar actualizacionde foto en base y jalar la foto de la base
-        JFileChooser jfc = new JFileChooser();
-        FileNameExtensionFilter filtroImagen = new FileNameExtensionFilter("JPG,PNG","jpg","png");
-        jfc.setFileFilter(filtroImagen);
-        int r=jfc.showOpenDialog(null);
-        if(r==JFileChooser.APPROVE_OPTION){
-            try {
-                ImageIcon img=new ImageIcon(jfc.getSelectedFile().toURL());
-                jLabel1.setIcon(new ImageIcon(img.getImage().getScaledInstance(200,200,Image.SCALE_SMOOTH)));
-            } catch (MalformedURLException e1) {
-                e1.printStackTrace();
-            }
-    }
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // SALIR
@@ -213,13 +182,11 @@ public class Usuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 }
