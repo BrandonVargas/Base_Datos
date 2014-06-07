@@ -28,8 +28,8 @@ public class ConnectionSQL{
     * Variables para realizar la conexión.
     * */
     protected Connection c = null;
-    protected PreparedStatement consulta;
-    protected ResultSet datos;
+    public PreparedStatement consulta;
+    public ResultSet datos;
     protected DatabaseMetaData metadata;
     public String urlConexion;
     
