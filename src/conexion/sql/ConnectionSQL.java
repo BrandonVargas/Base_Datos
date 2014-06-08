@@ -56,23 +56,28 @@ public class ConnectionSQL{
     			           "@"+this.host+":"+this.port+":"+this.dbName;
     }
     
+    /**
+     * Cambia la conexion.
+     * @param conn 
+     */
+    public void setConnection(Connection conn){
+        this.c = conn;
+    }
     
     @SuppressWarnings("finally")
     public Connection getConnection(){
     /*Almacena la conexión con la BD*/
-        Connection c = null;
-    	
         try{
             //Cargamos el Driver
             Class.forName(DRIVER_NAME);
             //Obtenemos una conexión mediante la url
-            c = DriverManager.getConnection(urlConexion);
+            this.c = DriverManager.getConnection(urlConexion);
             
             //Si la conexion se realiza con éxito... (Unicamete para Testing)
             if(c!=null){
                 System.out.println("Conexion establecida con exito: "+c);
                 System.out.println("Datos de la conexion: ");
-                metadata = c.getMetaData();
+                metadata = this.c.getMetaData();
                 System.out.println("URL: "+metadata.getURL());
                 System.out.println("Manejador: "+metadata.getDatabaseProductName());
                 System.out.println("Version: "+metadata.getDatabaseProductVersion());
@@ -85,7 +90,8 @@ public class ConnectionSQL{
             System.out.println("No se pudo conectar a la BD");
             //e.printStackTrace();
         }finally{
-            return c;	
+            //setConnection(c);
+            return this.c;	
         }
     }
     
@@ -96,7 +102,7 @@ public class ConnectionSQL{
     */
     public void endConnection() throws SQLException{
     	this.c.close();
-    	this.consulta.close();
+    	//this.consulta.close();
     }
     
     public void endConnection(ResultSet rs) throws SQLException{
