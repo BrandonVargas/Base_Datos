@@ -268,7 +268,12 @@ public class Usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+        // OPCIONES
+        if(jComboBox1.getSelectedItem().equals("ESTUDIANTE")){
+            jPanel2.setVisible(true);
+        }else{
+            jPanel2.setVisible(false);
+        }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     
